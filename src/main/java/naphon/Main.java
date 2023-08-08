@@ -1,5 +1,6 @@
 package naphon;
 
+import java.text.DecimalFormat;
 import java.util.*;
 
 public class Main {
@@ -16,7 +17,9 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         while(true) {
             double in = scanner.nextDouble();
-            System.out.println("If the height is " + in + " centimeters, the weight is approximately " + (m * in + c) + " kilograms.");
+            DecimalFormat fmt = new DecimalFormat("#." + "0".repeat(3));
+            fmt.setMaximumFractionDigits(3);
+            System.out.println("If the height is " + in + " centimeters, the weight is approximately " + fmt.format(m * in + c) + " kilograms.");
         }
     }
 
@@ -25,7 +28,6 @@ public class Main {
     }
 
     private static double getM(double meanx, double meany) {
-        double m = 0.0;
         double sum1 = 0.0;
         double sum2 = 0.0;
 
@@ -34,9 +36,8 @@ public class Main {
             sum1+=(x-meanx)*(y-meany);
             sum2+=(Math.pow(x-meanx,2));
         }
-            m=sum1/sum2;
 
-        return m;
+        return sum1/sum2;
     }
 
     private static double getMean(Set<Double> set) {
@@ -52,5 +53,6 @@ public class Main {
         data.put(150.0, 57.5);
         data.put(175.2, 70.1);
         data.put(184.3, 75.2);
+        data.put(160.1, 52.8);
     }
 }
